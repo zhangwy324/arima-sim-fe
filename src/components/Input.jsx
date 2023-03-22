@@ -121,7 +121,7 @@ export default function Input({ setPlotData, setError }) {
       headers: myHeaders,
       body: body,
     };
-    fetch("http://127.0.0.1:4000/sarimaApi", requestOptions)
+    fetch("http://127.0.0.1:4000/sarimaApi", requestOptions) // TODO: Change to deployed server url
       .then((res) => {
         return res.json();
       })
