@@ -121,7 +121,7 @@ export default function Input({ setPlotData, setError }) {
       headers: myHeaders,
       body: body,
     };
-    fetch("https://arima-sim-be-production.up.railway.app/sarimaApi", requestOptions) // TODO: Change to deployed server url
+    fetch("https://arima-sim-be-production.up.railway.app/sarima", requestOptions) // TODO: Change to deployed server url
       .then((res) => {
         return res.json();
       })
