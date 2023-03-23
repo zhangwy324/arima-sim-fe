@@ -7,6 +7,7 @@ function App() {
   const [plotData, setPlotData] = useState({ data: [] });
   const [error, setError] = useState(false);
   const [errorObj, setErrorObj] = useState({});
+  const [isFetched, setIsFetched] = useState(false);
 
   return (
     <div className="App">
@@ -17,10 +18,11 @@ function App() {
             setPlotData={setPlotData}
             setError={setError}
             setErrorObj={setErrorObj}
+            setIsFetched={setIsFetched}
           />
 
-          {!error && <Plot plotData={plotData} />}
-          {!error && (
+          {!error && isFetched && <Plot plotData={plotData} />}
+          {!error && isFetched && (
             <div className="border border-orange-500 px-2 w-36 ml-auto text-center rounded-lg text-orange-500">
               <div>
                 <p>Mean: {plotData.mean}</p>

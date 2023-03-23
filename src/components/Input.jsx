@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import DynamicInput from "./DynamicInput";
 import SingleInput from "./SingleInput";
 
-export default function Input({ setPlotData, setError, setErrorObj }) {
+export default function Input({ setPlotData, setError, setErrorObj, setIsFetched }) {
   // this toggles each time Randomize button is clicked
   // which triggers useEffect which runs the submit function to fetch data
   // I did this so that when user change seed input, it does not trigger a fetch
@@ -122,12 +122,23 @@ export default function Input({ setPlotData, setError, setErrorObj }) {
       body: body,
     };
 
-    fetch("https://arima-sim-be-production.up.railway.app/sarima", requestOptions)
+    let serverURL;
+
+    if (import.meta.env.MODE === "development") {
+      console.log("development mode");
+      serverURL = "http://127.0.0.1:4000/sarima";
+    } else if (import.meta.env.MODE === "production") {
+      console.log("production mode");
+      serverURL = "arima-sim-be-production.up.railway.app/sarima";
+    }
+    console.log(serverURL);
+    fetch(serverURL, requestOptions)
       .then((res) => {
         return res.json();
       })
       .then((data) => {
         console.log("DATA:", data);
+        setIsFetched(true);
         if (data.hasOwnProperty("error")) {
           setError(true);
           setPlotData({ data: [] });
@@ -138,11 +149,11 @@ export default function Input({ setPlotData, setError, setErrorObj }) {
         }
       })
       .catch((err) => {
-        // currently this never runs
-        //
-        setPlotData({ data: [] });
+        // this runs when server is down
         setError(true);
-        console.log("ERR:", err);
+        setErrorObj({ error: ["The server is down"] });
+        setPlotData({ data: [] });
+        console.log("fetch error:", err);
       });
   }
 
