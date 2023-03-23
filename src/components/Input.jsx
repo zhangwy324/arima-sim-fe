@@ -129,7 +129,7 @@ export default function Input({ setPlotData, setError, setErrorObj, setIsFetched
       serverURL = "http://127.0.0.1:4000/sarima";
     } else if (import.meta.env.MODE === "production") {
       console.log("production mode");
-      serverURL = "arima-sim-be-production.up.railway.app/sarima";
+      serverURL = "https://arima-sim-be-production.up.railway.app/";
     }
     console.log(serverURL);
     fetch(serverURL, requestOptions)
