@@ -126,7 +126,7 @@ export default function Input({ setPlotData, setError, setErrorObj }) {
         return res.json();
       })
       .then((data) => {
-        // console.log("DATA:", data);
+        console.log("DATA:", data);
         if (data.hasOwnProperty("error")) {
           setError(true);
           setPlotData({ data: [] });
@@ -138,6 +138,7 @@ export default function Input({ setPlotData, setError, setErrorObj }) {
       })
       .catch((err) => {
         // currently this never runs
+        //
         setPlotData({ data: [] });
         setError(true);
         console.log("ERR:", err);
