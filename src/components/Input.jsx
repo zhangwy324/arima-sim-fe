@@ -139,6 +139,7 @@ export default function Input({ setPlotData, setError, setErrorObj }) {
       })
       .catch((err) => {
         // currently this never runs
+        //
         setPlotData({ data: [] });
         setError(true);
         console.log("ERR:", err);

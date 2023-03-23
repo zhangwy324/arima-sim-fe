@@ -28,11 +28,7 @@ function App() {
               </div>
             </div>
           )}
-          {error && (
-            <p>
-              {errorObj.error.error}, {errorObj.error.message}
-            </p>
-          )}
+          {error && <p>{errorObj.error[0]}</p>}
         </div>
       </div>
     </div>
