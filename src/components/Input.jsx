@@ -125,19 +125,15 @@ export default function Input({ setPlotData, setError, setErrorObj, setIsFetched
     let serverURL;
 
     if (import.meta.env.MODE === "development") {
-      console.log("development mode");
       serverURL = "http://127.0.0.1:4000/sarima";
     } else if (import.meta.env.MODE === "production") {
-      console.log("production mode");
       serverURL = "https://arima-sim-be-production.up.railway.app/sarima";
     }
-    console.log(serverURL);
     fetch(serverURL, requestOptions)
       .then((res) => {
         return res.json();
       })
       .then((data) => {
-        console.log("DATA:", data);
         setIsFetched(true);
         if (data.hasOwnProperty("error")) {
           setError(true);
@@ -153,7 +149,6 @@ export default function Input({ setPlotData, setError, setErrorObj, setIsFetched
         setError(true);
         setErrorObj({ error: ["The server is down"] });
         setPlotData({ data: [] });
-        console.log("fetch error:", err);
       });
   }
 
