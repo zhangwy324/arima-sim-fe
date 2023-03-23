@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import DynamicInput from "./DynamicInput";
 import SingleInput from "./SingleInput";
 
-export default function Input({ setPlotData, setError }) {
+export default function Input({ setPlotData, setError, setErrorObj }) {
   // this toggles each time Randomize button is clicked
   // which triggers useEffect which runs the submit function to fetch data
   // I did this so that when user change seed input, it does not trigger a fetch
@@ -126,19 +126,21 @@ export default function Input({ setPlotData, setError }) {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
+        // console.log("DATA:", data);
         if (data.hasOwnProperty("error")) {
           setError(true);
-          setPlotData(data);
+          setPlotData({ data: [] });
+          setErrorObj(data);
         } else {
           setError(false);
           setPlotData(data);
         }
       })
       .catch((err) => {
+        // currently this never runs
         setPlotData({ data: [] });
         setError(true);
-        console.log(err);
+        console.log("ERR:", err);
       });
   }
 
