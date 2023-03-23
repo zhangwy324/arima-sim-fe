@@ -122,12 +122,12 @@ export default function Input({ setPlotData, setError, setErrorObj }) {
       body: body,
     };
 
-    fetch("https://arima-sim-be-production.up.railway.app/sarima", requestOptions) // TODO: Change to deployed server url
+    fetch("https://arima-sim-be-production.up.railway.app/sarima", requestOptions)
       .then((res) => {
         return res.json();
       })
       .then((data) => {
-        // console.log("DATA:", data);
+        console.log("DATA:", data);
         if (data.hasOwnProperty("error")) {
           setError(true);
           setPlotData({ data: [] });
