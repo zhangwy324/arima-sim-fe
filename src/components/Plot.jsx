@@ -65,8 +65,8 @@ export default function Plot({ plotData }) {
     datasets: [
       {
         data: plotData.data,
-        borderColor: "rgb(253 186 116)",
-        backgroundColor: "rgba(253 186 116)",
+        borderColor: "rgb(251 146 60)",
+        backgroundColor: "rgba(251 146 60)",
         borderWidth: 1.5,
         pointRadius: 1,
         pointHitRadius: 5,
