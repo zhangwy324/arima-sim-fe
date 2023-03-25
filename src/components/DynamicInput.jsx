@@ -3,7 +3,7 @@ import React from "react";
 export default function DynamicInput({ params, name, handleAdd, handleInputChange, handleDelete }) {
   return (
     <div className="flex flex-col gap-1">
-      <div className="border bg-orange-300 rounded-full p-2 w-44 text-center">
+      <div className="bg-orange-300 rounded-full p-2 w-44 text-center">
         <span>
           {name} coefficients:{" "}
           <button

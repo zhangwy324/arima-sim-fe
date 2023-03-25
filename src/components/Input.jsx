@@ -2,24 +2,12 @@ import React, { useState, useEffect } from "react";
 import DynamicInput from "./DynamicInput";
 import SingleInput from "./SingleInput";
 
-export default function Input({ setPlotData, setError, setErrorObj, setIsFetched }) {
+export default function Input({ params, setParams, handleSubmit, setRandButtonToggler }) {
+  console.log(params);
   // this toggles each time Randomize button is clicked
   // which triggers useEffect which runs the submit function to fetch data
   // I did this so that when user change seed input, it does not trigger a fetch
   // cannot call onSubmit directly inside randSeed as the fetch would not fetch using the updated seed
-  const [randButtonToggler, setRandButtonToggler] = useState(false);
-  const [params, setParams] = useState({
-    ar: [],
-    d: "0",
-    ma: [],
-    sar: [],
-    D: "0",
-    sma: [],
-    S: "",
-    n: "100",
-    seed: "100",
-    burnin: "50",
-  });
 
   // handle add buttons for ar, ma, sar, sma coefficients
   function handleAdd(event) {
@@ -95,68 +83,8 @@ export default function Input({ setPlotData, setError, setErrorObj, setIsFetched
     }
   }
 
-  function randSeed() {
-    const rnum = getRandomIntInclusive(-2147483647, 2147483647);
-    setParams((prevParams) => {
-      return {
-        ...prevParams,
-        seed: `${rnum}`,
-      };
-    });
-    setRandButtonToggler((prev) => !prev);
-  }
-
-  useEffect(() => {
-    handleSubmit();
-  }, [randButtonToggler]);
-
-  // handle the plot button
-  // calls the backend with the params in the state
-  function handleSubmit() {
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-    const body = JSON.stringify(params);
-    const requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: body,
-    };
-
-    let serverURL;
-
-    if (import.meta.env.MODE === "development") {
-      serverURL = "http://127.0.0.1:4000/sarima";
-    } else if (import.meta.env.MODE === "production") {
-      serverURL = "https://arima-sim-be-production.up.railway.app/sarima";
-    }
-    fetch(serverURL, requestOptions)
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setIsFetched(true);
-        if (data.hasOwnProperty("error")) {
-          setError(true);
-          setPlotData({ data: [] });
-          setErrorObj(data);
-        } else {
-          setError(false);
-          setPlotData(data);
-        }
-      })
-      .catch((err) => {
-        // this runs when server is down
-        setError(true);
-        setErrorObj({ error: ["The server is down"] });
-        setPlotData({ data: [] });
-      });
-  }
-
   return (
-    <div className="relative pb-6">
-      <h3 className="text-center font-roboto text-2xl pt-8">
-        SARIMA(p={params.ar.length}, d={params.d === "" ? 0 : params.d}, q={params.ma.length}) x (P={params.sar.length}, D={params.D === "" ? 0 : params.D}, Q={params.sma.length})<sub>period={params.S === "" ? 0 : params.S}</sub>
-      </h3>
+    <div className="relative w-60 border-r grow-0 overflow-y-scroll pb-11">
       <div className="flex flex-wrap justify-around my-2 gap-2">
         <DynamicInput
           params={params}
@@ -187,7 +115,7 @@ export default function Input({ setPlotData, setError, setErrorObj, setIsFetched
           handleDelete={handleDelete}
         />
       </div>
-      <div className="flex flex-wrap justify-around my-2 gap-2">
+      {/* <div className="flex flex-wrap justify-around my-2 gap-2">
         <SingleInput
           params={params}
           name="d"
@@ -222,20 +150,7 @@ export default function Input({ setPlotData, setError, setErrorObj, setIsFetched
           name="seed"
           handleIntChange={handleIntChange}
         />
-        <button
-          onClick={randSeed}
-          className="absolute bottom-0 right-0 m-0 border border-orange-400 rounded-xl px-4 text-orange-400 hover:bg-orange-400 hover:text-white"
-        >
-          Randomize
-        </button>
-      </div>
-
-      <button
-        onClick={handleSubmit}
-        className="text-3xl mx-auto block border border-orange-400 rounded-xl px-4 text-orange-400 hover:bg-orange-400 hover:text-white my-2"
-      >
-        Plot Time Series
-      </button>
+      </div> */}
     </div>
   );
 

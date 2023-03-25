@@ -75,7 +75,7 @@ export default function Plot({ plotData }) {
   };
 
   return (
-    <div className="relative h-[75vh] w-full">
+    <div className="relative h-[60vh] w-full">
       <Line
         options={options}
         data={data}
