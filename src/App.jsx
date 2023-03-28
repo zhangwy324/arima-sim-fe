@@ -87,7 +87,7 @@ function App() {
 
   return (
     <div className="App">
-      <div className="font-roboto  absolute inset-0 flex flex-col overflow-hidden ">
+      <div className="font-roboto absolute inset-0 flex flex-col overflow-hidden ">
         <Header />
         {!isFetched && <div className="fixed top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4">Loading...</div>}
         {isFetched && (
@@ -98,24 +98,24 @@ function App() {
               handleSubmit={handleSubmit}
               setRandButtonToggler={setRandButtonToggler}
             />
-            <div className=" grow basis-0 flex flex-col overflow-x-hidden overflow-y-scroll justify-start pt-1 px-1 pb-14">
+            <div className=" grow basis-0 flex flex-col overflow-x-hidden overflow-y-scroll justify-start pt-1 px-1 pb-14 ">
               <h3 className="font-roboto text-xl text-center w-full self-stretch">
                 SARIMA({params.ar.length}, {params.d === "" ? 0 : params.d}, {params.ma.length}) x ({params.sar.length}, {params.D === "" ? 0 : params.D}, {params.sma.length})<sub>{params.S === "" ? 0 : params.S}</sub>
               </h3>
               <div className="flex items-center justify-between self-stretch">
                 <button
                   onClick={randSeed}
-                  className="border border-orange-400 rounded-xl px-4 text-orange-400 hover:bg-orange-400 hover:text-white"
+                  className="border border-gray-400 rounded-xl px-4 text-gray-500 hover:bg-gray-500 hover:text-white"
                 >
                   Randomize
                 </button>
                 <button
                   onClick={handleSubmit}
-                  className="text-3xl block border border-orange-400 rounded-xl px-4 text-orange-400 hover:bg-orange-400 hover:text-white"
+                  className="text-3xl block border border-gray-400 rounded-xl px-4 text-gray-500 hover:bg-gray-500 hover:text-white"
                 >
-                  Plot Time Series
+                  Plot
                 </button>
-                <div className="border border-orange-500 px-2 w-44 text-center rounded-lg text-orange-500">
+                <div className="border border-gray-400 px-2 w-44 text-center rounded-lg text-gray-500">
                   <div>
                     <p>Mean: {plotData.mean}</p>
                     <p>Variance: {plotData.var}</p>
