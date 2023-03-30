@@ -99,26 +99,26 @@ function App() {
               setRandButtonToggler={setRandButtonToggler}
             />
             <div className=" grow basis-0 flex flex-col overflow-x-hidden overflow-y-scroll justify-start pt-1 px-1 pb-14 ">
-              <h3 className="font-roboto text-xl text-center w-full self-stretch">
+              <h3 className="font-serif text-xl text-center w-full self-stretch text-gray-900 ">
                 SARIMA({params.ar.length}, {params.d === "" ? 0 : params.d}, {params.ma.length}) x ({params.sar.length}, {params.D === "" ? 0 : params.D}, {params.sma.length})<sub>{params.S === "" ? 0 : params.S}</sub>
               </h3>
               <div className="flex items-center justify-between self-stretch">
                 <button
                   onClick={randSeed}
-                  className="border border-gray-400 rounded-xl px-4 text-gray-500 hover:bg-gray-500 hover:text-white"
+                  className="py-2 px-5 text-base font-normal text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 "
                 >
                   Randomize
                 </button>
                 <button
                   onClick={handleSubmit}
-                  className="text-3xl block border border-gray-400 rounded-xl px-4 text-gray-500 hover:bg-gray-500 hover:text-white"
+                  className="text-3xl py-2.5 px-5 font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 "
                 >
                   Plot
                 </button>
-                <div className="border border-gray-400 px-2 w-44 text-center rounded-lg text-gray-500">
+                <div className="border border-gray-300 px-2 w-44 text-center rounded-lg text-gray-900">
                   <div>
-                    <p>Mean: {plotData.mean}</p>
-                    <p>Variance: {plotData.var}</p>
+                    <p className="overflow-ellipsis">Mean: {plotData.mean}</p>
+                    <p className="overflow-ellipsis">Var: {plotData.var}</p>
                   </div>
                 </div>
               </div>
@@ -168,38 +168,32 @@ function SingleInputGroup({ params, setParams }) {
         params={params}
         name="d"
         handleIntChange={handleIntChange}
-        className=""
       />
       <SingleInput
         params={params}
         name="D"
         handleIntChange={handleIntChange}
-        className=""
       />
 
       <SingleInput
         params={params}
         name="S"
         handleIntChange={handleIntChange}
-        className=""
       />
       <SingleInput
         params={params}
         name="n"
         handleIntChange={handleIntChange}
-        className=""
       />
       <SingleInput
         params={params}
         name="burnin"
         handleIntChange={handleIntChange}
-        className=""
       />
       <SingleInput
         params={params}
         name="seed"
         handleIntChange={handleIntChange}
-        className=""
       />
     </div>
   );

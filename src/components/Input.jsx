@@ -10,8 +10,8 @@ export default function Input({ params, setParams, handleSubmit, setRandButtonTo
   // cannot call onSubmit directly inside randSeed as the fetch would not fetch using the updated seed
 
   // handle add buttons for ar, ma, sar, sma coefficients
-  function handleAdd(event) {
-    const name = event.target.name;
+  function handleAdd(event, n) {
+    const name = n || event.target.name;
     setParams((prevParams) => {
       return {
         ...prevParams,
@@ -84,8 +84,8 @@ export default function Input({ params, setParams, handleSubmit, setRandButtonTo
   }
 
   return (
-    <div className="relative w-60 border-r grow-0 overflow-y-scroll pb-11">
-      <div className="flex flex-wrap justify-around my-2 gap-2">
+    <div className="relative grow-0 overflow-y-scroll pb-11">
+      <div className="flex flex-wrap justify-around w-60">
         <DynamicInput
           params={params}
           name="ar"

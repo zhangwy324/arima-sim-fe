@@ -17,7 +17,19 @@ export default function SingleInput({ params, name, handleIntChange }) {
   }
   return (
     <div className="basis-[33%] flex justify-center">
-      <div className={`relative inline-block rounded border w-52 ${isdisable ? "bg-gray-400" : ""}`}>
+      <div className="">
+        <label className="block mb-0.5 text-sm text-gray-900">{label}:</label>
+        <input
+          type="text"
+          name={name}
+          onChange={handleIntChange}
+          value={params[name]}
+          disabled={isdisable}
+          placeholder={label}
+          className={`bg-gray-50 border border-gray-300 text-gray-900 text-sm overflow-ellipsis rounded-lg block w-full p-2.5 ${isdisable ? "cursor-not-allowed" : ""} `}
+        />
+      </div>
+      {/* <div className={`relative inline-block rounded border w-52 ${isdisable ? "bg-gray-400" : ""}`}>
         <input
           type="text"
           name={name}
@@ -27,7 +39,7 @@ export default function SingleInput({ params, name, handleIntChange }) {
           disabled={isdisable}
         />
         <label className="h-8 flex items-center px-6 absolute top-0 left-0 bottom-0 text-base rounded-l">{label}: </label>
-      </div>
+      </div> */}
     </div>
   );
 }
