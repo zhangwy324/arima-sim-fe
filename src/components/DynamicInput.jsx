@@ -38,7 +38,7 @@ export default function DynamicInput({ params, name, handleAdd, handleInputChang
                 name={name}
                 onChange={handleInputChange}
                 value={params[name][index]}
-                className="w-48 indent-2 "
+                className="w-48 indent-2 outline-none "
               />
             </div>
           </div>

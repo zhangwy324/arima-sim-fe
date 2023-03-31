@@ -7,26 +7,35 @@ export default function SingleInput({ params, name, handleIntChange }) {
   }
   let label;
   switch (name) {
-    case "n":
-      label = "length";
+    case "d":
+      label = "Difference order"
       break;
-
+    case "D":
+      label = "Seasonal diff."
+      break;
+    case "S":
+      label = "Seasonal period"
+      break;
+    case "n":
+      label = "Series length";
+      name = "n"
+      break;
     default:
       label = name;
       break;
   }
   return (
-    <div className="basis-[33%] flex justify-center">
-      <div className="">
-        <label className="block mb-0.5 text-sm text-gray-900">{label}:</label>
+    <div className="basis-[33%] grow flex justify-center">
+      <div className="w-full px-2">
+        <label className="block mb-0.5 text-sm text-gray-900">{name}:</label>
         <input
           type="text"
           name={name}
           onChange={handleIntChange}
           value={params[name]}
           disabled={isdisable}
-          placeholder={label}
-          className={`bg-gray-50 border border-gray-300 text-gray-900 text-sm overflow-ellipsis rounded-lg block w-full p-2.5 ${isdisable ? "cursor-not-allowed" : ""} `}
+          placeholder={isdisable ? "No seasonal params" : label}
+          className={`outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm overflow-ellipsis rounded-lg block w-full p-2.5 ${isdisable ? "cursor-not-allowed" : ""} `}
         />
       </div>
       {/* <div className={`relative inline-block rounded border w-52 ${isdisable ? "bg-gray-400" : ""}`}>
