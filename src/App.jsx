@@ -43,7 +43,6 @@ function App() {
   // handle the plot button
   // calls the backend with the params in the state
   function handleSubmit() {
-    console.log("fetching");
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     const body = JSON.stringify(params);

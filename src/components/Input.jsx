@@ -3,7 +3,6 @@ import DynamicInput from "./DynamicInput";
 import SingleInput from "./SingleInput";
 
 export default function Input({ params, setParams, handleSubmit, setRandButtonToggler }) {
-  console.log(params);
   // this toggles each time Randomize button is clicked
   // which triggers useEffect which runs the submit function to fetch data
   // I did this so that when user change seed input, it does not trigger a fetch
