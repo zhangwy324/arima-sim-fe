@@ -65,8 +65,8 @@ export default function Plot({ plotData }) {
     datasets: [
       {
         data: plotData.data,
-        borderColor: "rgb(251 146 60)",
-        backgroundColor: "rgba(251 146 60)",
+        borderColor: "rgb(107 114 128)",
+        backgroundColor: "rgba(107 114 128)",
         borderWidth: 1.5,
         pointRadius: 1,
         pointHitRadius: 5,
@@ -75,7 +75,7 @@ export default function Plot({ plotData }) {
   };
 
   return (
-    <div className="relative h-[75vh] w-full">
+    <div className="relative h-[60vh] w-full">
       <Line
         options={options}
         data={data}
